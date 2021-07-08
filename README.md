@@ -1,4 +1,4 @@
-# crew
+# Teams
 
 ## Project setup
 ```
