@@ -9,6 +9,7 @@
       @deleteRoom="deleteRoom"
       @checkIn="checkIn"
     />
+    <AppFooter />
   </div>
 </template>
 
@@ -16,11 +17,13 @@
 import db from "./db.js";
 import Firebase from "firebase";
 import AppNavigation from "@/components/AppNavigation";
+import AppFooter from "@/components/AppFooter";
 
 export default {
   name: "App",
   components: {
     AppNavigation,
+    AppFooter,
   },
   data: function () {
     return {
