@@ -85,7 +85,7 @@ export default {
         if (doc.exists) {
           this.roomName = doc.data().name;
         } else {
-          this.$route.replace("/");
+          this.$router.push("/");
         }
       });
   },

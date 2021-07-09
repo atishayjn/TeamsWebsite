@@ -43,11 +43,27 @@ export default {
           .onSnapshot((snapshot) => {
             const snapData = [];
             snapshot.forEach((doc) => {
-              snapData.push({
-                id: doc.id,
-                name: doc.data().name,
-                //----ADD HOST-ID here---
-              });
+              /**
+               * ---------CHECK HERE------
+               * Code seems fine, issues with database (Same document id in diff collections)
+               *
+               * Check if hostID exists for that particular room (new/old database issue)
+               * If hostID doesn't exist, the only reason could be this room was hosted by
+               * the current user earlier.
+               */
+              if (doc.data().hostID) {
+                snapData.push({
+                  id: doc.id,
+                  name: doc.data().name,
+                  hostID: doc.data().hostID,
+                });
+              } else {
+                snapData.push({
+                  id: doc.id,
+                  name: doc.data().name,
+                  hostID: this.user.uid,
+                });
+              }
             });
             this.rooms = snapData.sort((a, b) => {
               // Custom Comparator.
@@ -108,7 +124,7 @@ export default {
         }
       });
 
-      // Add the newly checked-in room to the list of rooms.
+      // Add the newly checked-in room to the list of rooms of the current user.
       if (this.user.uid != payload.hostID) {
         // Try doing this by calling addRoom method (hostID parameter to be passed in payload).
         db.collection("users").doc(this.user.uid).collection("rooms").add({

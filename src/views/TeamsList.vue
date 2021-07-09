@@ -60,19 +60,21 @@
                 >
                   <font-awesome-icon icon="trash"></font-awesome-icon>
                 </button>
-                <!-- CheckIn to Team/Room -->
+                <!-- CheckIn to Team/Room  -->
+                <!-- CHECK HERE -->
                 <router-link
                   class="btn btn-sm btn-outline-secondary"
                   title="Check In"
-                  :to="`/checkIn/${user.uid}/${item.id}`"
+                  :to="`/checkIn/${item.hostID}/${item.id}`"
                 >
                   <font-awesome-icon icon="user"></font-awesome-icon>
                 </router-link>
                 <!-- Start/Join Call -->
+                <!-- CHECK HERE -->
                 <router-link
                   class="btn btn-sm btn-outline-secondary"
                   title="Join Call"
-                  :to="`/chat/${user.uid}/${item.id}`"
+                  :to="`/chat/${item.hostID}/${item.id}`"
                 >
                   <font-awesome-icon icon="video"></font-awesome-icon>
                 </router-link>
