@@ -36,7 +36,7 @@ export default {
       if (user) {
         // Change Current User.
         this.user = user;
-        // Retrieve Room Data for Current User.
+        // Get Rooms List for Current User.
         db.collection("users")
           .doc(this.user.uid)
           .collection("rooms")
@@ -46,6 +46,7 @@ export default {
               snapData.push({
                 id: doc.id,
                 name: doc.data().name,
+                //----ADD HOST-ID here---
               });
             });
             this.rooms = snapData.sort((a, b) => {

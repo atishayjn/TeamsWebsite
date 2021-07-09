@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-9 col-lg-7">
         <h1 class="font-weight-light text-center">Add a Team</h1>
-
+        <!-- Add New Team/Room box -->
         <div class="card bg-light">
           <div class="card-body text-center">
             <form class="formgroup">
@@ -33,6 +33,7 @@
         </div>
       </div>
     </div>
+    <!-- Display the list of your Teams/Rooms -->
     <div class="row justify-content-center">
       <div class="col-11 col-md-8 col-lg-6">
         <div class="card border-top-0 rounded-0">
@@ -40,6 +41,7 @@
             <h4 class="card-title m-0 text-center">Your Teams</h4>
           </div>
           <div class="list-group list-group-flush">
+            <!-- Team/Room List Item-->
             <div
               v-for="item in rooms"
               :key="item.id"
@@ -50,6 +52,7 @@
                 role="group"
                 aria-label="Room Options"
               >
+                <!-- Delete Team/Room -->
                 <button
                   class="btn btn-sm btn-outline-secondary"
                   title="Delete Team"
@@ -57,7 +60,7 @@
                 >
                   <font-awesome-icon icon="trash"></font-awesome-icon>
                 </button>
-
+                <!-- CheckIn to Team/Room -->
                 <router-link
                   class="btn btn-sm btn-outline-secondary"
                   title="Check In"
@@ -65,15 +68,16 @@
                 >
                   <font-awesome-icon icon="user"></font-awesome-icon>
                 </router-link>
-
+                <!-- Start/Join Call -->
                 <router-link
                   class="btn btn-sm btn-outline-secondary"
-                  title="Chat"
+                  title="Join Call"
                   :to="`/chat/${user.uid}/${item.id}`"
                 >
                   <font-awesome-icon icon="video"></font-awesome-icon>
                 </router-link>
               </section>
+              <!-- Team/Roome Name -->
               <section class="pl-3 text-left align-self-center mx-2">
                 {{ item.name }}
               </section>
@@ -111,6 +115,7 @@ export default {
   },
   methods: {
     handleAdd: function () {
+      // Check if input field (roomName) is empty.
       if (this.roomName != null) {
         this.$emit("addRoom", this.roomName);
         this.roomName = null;
