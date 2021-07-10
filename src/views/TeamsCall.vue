@@ -6,95 +6,103 @@
         Hosted by: <strong class="text-danger">{{ hostDisplayName }} </strong>
       </span>
     </div>
-    <div v-if="(user && user.uid == hostID) || attendeeApproved" class="row">
-      <div class="col-md-8">
-        <!-- <vue-webrtc 
-          ref="webrtc" 
-          width="100%" 
-          :roomId="roomID"
-          v-on:joined-room="doAttendeeJoined"
-          v-on:left-room="doAttendeeLeft"
-          /> -->
-        <vue-jitsi-meet
-          v-if="attendeeJoined"
-          ref="jitsiRef"
-          domain="meet.jit.si"
-          :options="jitsiOptions"
-        ></vue-jitsi-meet>
-      </div>
-      <div class="col-md-4">
-        <button
-          v-if="!attendeeJoined && attendeeApproved"
-          class="btn btn-primary mr-1"
-          @click="doJoin"
-        >
-          Join
-        </button>
-        <button
-          v-if="attendeeJoined"
-          type="button"
-          class="btn btn-danger mr-1"
-          @click="doLeave"
-        >
-          Leave
-        </button>
-        <h4 class="mt-2">Attendees</h4>
-        <ul class="list-unstyled">
-          <li v-for="attendee in attendeesApproved" :key="attendee.id">
-            <a
-              v-if="user && user.uid == hostID"
-              type="button"
-              class="mr-2"
-              title="Refuse attendee"
-              @click="toggleApproval(attendee.id)"
-            >
-              <font-awesome-icon icon="user"></font-awesome-icon>
-            </a>
-            <span
-              class="mr-2"
-              :class="[attendee.webRTCID ? 'text-success' : 'text-secondary']"
-              title="On Air"
-            >
-              <font-awesome-icon icon="podcast"></font-awesome-icon>
-            </span>
-            <span
-              class="pl-1"
-              :class="[
-                attendee.id == user.uid ? 'font-weight-bold  text-danger' : '',
-              ]"
-              >{{ attendee.displayName }}</span
-            >
-          </li>
-        </ul>
-        <div v-if="user && user.uid == hostID">
-          <h5 class="mt-4">Pending</h5>
+    <div v-if="(user && user.uid == hostID) || attendeeApproved">
+      <div class="row">
+        <div class="col-md">
+          <button
+            v-if="!attendeeJoined && attendeeApproved"
+            class="btn btn-primary mr-1"
+            @click="doJoin"
+          >
+            Join Call
+          </button>
+          <button
+            v-if="attendeeJoined"
+            type="button"
+            class="btn btn-danger mr-1"
+            @click="doLeave"
+          >
+            Leave
+          </button>
+        </div>
+        <div class="col-md">
+          <h4 class="mt-2">Attendees</h4>
           <ul class="list-unstyled">
-            <li
-              v-for="attendee in attendeesPending"
-              :key="attendee.id"
-              class="mb-1"
-            >
-              <span>
-                <a
-                  type="button"
-                  class="mr-2"
-                  title="Approve attendee"
-                  @click="toggleApproval(attendee.id)"
-                >
-                  <font-awesome-icon icon="user"></font-awesome-icon>
-                </a>
-                <a
-                  type="button"
-                  class="text-secondary pr-1"
-                  title="Delete Attendee"
-                  @click="deleteAttendee(attendee.id)"
-                >
-                  <font-awesome-icon icon="trash"></font-awesome-icon>
-                </a>
+            <li v-for="attendee in attendeesApproved" :key="attendee.id">
+              <a
+                v-if="user && user.uid == hostID"
+                type="button"
+                class="mr-2"
+                title="Refuse attendee"
+                @click="toggleApproval(attendee.id)"
+              >
+                <font-awesome-icon icon="user"></font-awesome-icon>
+              </a>
+              <span
+                class="mr-2"
+                :class="[attendee.webRTCID ? 'text-success' : 'text-secondary']"
+                title="On Air"
+              >
+                <font-awesome-icon icon="podcast"></font-awesome-icon>
               </span>
-              <span class="pl-1">{{ attendee.displayName }}</span>
+              <span
+                class="pl-1"
+                :class="[
+                  attendee.id == user.uid
+                    ? 'font-weight-bold  text-danger'
+                    : '',
+                ]"
+                >{{ attendee.displayName }}</span
+              >
             </li>
           </ul>
+        </div>
+        <div class="col-md">
+          <div v-if="user && user.uid == hostID">
+            <h4 class="mt-2">Pending</h4>
+            <ul class="list-unstyled">
+              <li
+                v-for="attendee in attendeesPending"
+                :key="attendee.id"
+                class="mb-1"
+              >
+                <span>
+                  <a
+                    type="button"
+                    class="mr-2"
+                    title="Approve attendee"
+                    @click="toggleApproval(attendee.id)"
+                  >
+                    <font-awesome-icon icon="user"></font-awesome-icon>
+                  </a>
+                  <a
+                    type="button"
+                    class="text-secondary pr-1"
+                    title="Delete Attendee"
+                    @click="deleteAttendee(attendee.id)"
+                  >
+                    <font-awesome-icon icon="trash"></font-awesome-icon>
+                  </a>
+                </span>
+                <span class="pl-1">{{ attendee.displayName }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      <div class="row pb-5 ps-1">
+        <div v-if="attendeeJoined" class="col-md-8">
+          <vue-jitsi-meet
+            ref="jitsiRef"
+            domain="meet.jit.si"
+            :options="jitsiOptions"
+          ></vue-jitsi-meet>
+        </div>
+        <div v-else class="border border-2 col-md-8"></div>
+        <div v-if="user" class="col-md-4">
+          <!-- eslint-disable-next-line -->
+          <Chatbox :user="user" :hostID="hostID" :roomID="roomID" />
         </div>
       </div>
     </div>
@@ -115,12 +123,14 @@
 import db from "../db.js";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { JitsiMeet } from "@mycure/vue-jitsi-meet";
+import Chatbox from "@/components/Chatbox";
 
 export default {
   name: "TeamsCall",
   components: {
     FontAwesomeIcon,
     VueJitsiMeet: JitsiMeet,
+    Chatbox,
   },
   props: {
     user: {

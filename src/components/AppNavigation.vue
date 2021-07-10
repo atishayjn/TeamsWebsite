@@ -6,10 +6,10 @@
           ><span class="h2 pr-1">Teams</span>
           <span v-if="user" class="navbar-text small">
             : Hi
-            <span class="font-weight-bold text-white">{{
-              user.displayName
-            }}</span></span
-          >
+            <span class="font-weight-bold text-white">
+              {{ user.displayName }}
+            </span>
+          </span>
         </router-link>
         <div class="navbar-nav ml-auto">
           <router-link v-if="!user" class="nav-item nav-link" to="/login"
