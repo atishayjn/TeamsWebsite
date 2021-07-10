@@ -58,6 +58,8 @@ export default {
   },
   data: function () {
     return {
+      hostID: this.$route.params.hostID,
+      roomID: this.$route.params.roomID,
       displayName: null,
       roomName: null,
       invite: null,
@@ -91,9 +93,23 @@ export default {
   },
   methods: {
     handleCheckIn: function () {
+      // Add the newly checked-in room to the list of rooms of the current user.
+      if (this.user.uid != this.hostID) {
+        db.collection("users")
+          .doc(this.user.uid)
+          .collection("rooms")
+          .doc(this.roomID)
+          .set({
+            name: this.roomName,
+            hostID: this.hostID,
+            createdAt: Firebase.firestore.FieldValue.serverTimestamp(),
+          });
+      }
+
+      // Add user to the list of attendees.
       this.$emit("checkIn", {
-        hostID: this.$route.params.hostID,
-        roomID: this.$route.params.roomID,
+        hostID: this.hostID,
+        roomID: this.roomID,
         roomName: this.roomName,
         displayName: this.displayName,
       });

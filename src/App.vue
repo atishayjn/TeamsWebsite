@@ -123,16 +123,6 @@ export default {
             );
         }
       });
-
-      // Add the newly checked-in room to the list of rooms of the current user.
-      if (this.user.uid != payload.hostID) {
-        // Try doing this by calling addRoom method (hostID parameter to be passed in payload).
-        db.collection("users").doc(this.user.uid).collection("rooms").add({
-          name: payload.roomName,
-          hostID: payload.hostID,
-          createdAt: Firebase.firestore.FieldValue.serverTimestamp(),
-        });
-      }
     },
   },
 };
