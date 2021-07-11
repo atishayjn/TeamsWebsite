@@ -31,7 +31,7 @@
             >Start Open Meeting</router-link
           >
           <router-link v-if="user" class="btn btn-primary mx-1" to="/rooms"
-            >Teams List</router-link
+            >Your Teams</router-link
           >
         </div>
       </div>
