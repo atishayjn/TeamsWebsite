@@ -32,26 +32,22 @@
               <a
                 v-if="user && user.uid == hostID"
                 type="button"
-                class="mr-2"
+                class="px-1 text-danger"
                 title="Refuse attendee"
                 @click="toggleApproval(attendee.id)"
               >
                 <font-awesome-icon icon="user"></font-awesome-icon>
               </a>
               <span
-                class="mr-2"
+                class="pe-2"
                 :class="[attendee.webRTCID ? 'text-success' : 'text-secondary']"
-                title="On Air"
+                title="Approved Attendee"
               >
                 <font-awesome-icon icon="podcast"></font-awesome-icon>
               </span>
               <span
                 class="pl-1"
-                :class="[
-                  attendee.id == user.uid
-                    ? 'font-weight-bold  text-danger'
-                    : '',
-                ]"
+                :class="[attendee.id == user.uid ? 'font-weight-bold' : '']"
                 >{{ attendee.displayName }}</span
               >
             </li>
@@ -69,7 +65,7 @@
                 <span>
                   <a
                     type="button"
-                    class="mr-2"
+                    class="px-1 text-success"
                     title="Approve attendee"
                     @click="toggleApproval(attendee.id)"
                   >
@@ -77,7 +73,7 @@
                   </a>
                   <a
                     type="button"
-                    class="text-secondary pr-1"
+                    class="text-secondary pe-2 text-danger"
                     title="Delete Attendee"
                     @click="deleteAttendee(attendee.id)"
                   >
