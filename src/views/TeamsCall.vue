@@ -17,7 +17,7 @@
             Join Call
           </button>
           <button
-            v-if="attendeeJoined"
+            v-if="attendeeJoined && attendeeApproved"
             type="button"
             class="btn btn-danger mr-1"
             @click="doLeave"
@@ -92,7 +92,7 @@
         <div class="col-md-4"></div>
       </div>
       <div class="row pb-4 ps-1">
-        <div v-if="attendeeJoined" class="col-md-8">
+        <div v-if="attendeeJoined && attendeeApproved" class="col-md-8">
           <vue-jitsi-meet
             ref="jitsiRef"
             domain="meet.jit.si"
@@ -153,7 +153,7 @@ export default {
       attendeesPending: [],
       attendeesApproved: [],
       attendeeApproved: false,
-      attendeeJoined: false,
+      attendeeJoined: true,
 
       //Data for jisi.
     };
