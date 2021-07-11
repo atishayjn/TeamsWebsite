@@ -22,6 +22,7 @@
                     id="buttonAdd"
                     type="submit"
                     class="btn btn-sm btn-info"
+                    title="Add a new team"
                     @click.prevent="handleAdd"
                   >
                     +
@@ -79,9 +80,16 @@
                   <font-awesome-icon icon="video"></font-awesome-icon>
                 </router-link>
               </section>
+
               <!-- Team/Roome Name -->
               <section class="pl-3 text-left align-self-center mx-2">
-                {{ item.name }}
+                <router-link
+                  class="text-decoration-none"
+                  title="Join Call"
+                  :to="`/chat/${item.hostID}/${item.id}`"
+                >
+                  {{ item.name }}
+                </router-link>
               </section>
             </div>
           </div>
