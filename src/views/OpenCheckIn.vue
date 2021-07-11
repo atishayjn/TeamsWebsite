@@ -5,21 +5,26 @@
         <div class="col-lg-6">
           <div class="card bg-light">
             <div v-if="user" class="card-body">
-              <h1 class="font-weight-light mb-0">Check in</h1>
-              <p class="font-weight-bold">Enter Meeting Name:</p>
+              <h3 class="font-weight-light mb-0">Enter Meeting Name</h3>
+              <p class="font-weight-bold"></p>
               <section class="form-group">
-                <label class="form-control-label sr-only" for="meetName"
-                  >Meeting Name</label
-                >
                 <input
                   v-model="meetName"
                   required
                   class="form-control"
                   type="text"
+                  title="Enter Meeting Name"
+                  placeholder="Meeting Name"
                 />
               </section>
-              <div class="form-group text-right mb-0">
-                <button class="btn btn-primary" type="submit">Check in</button>
+              <div class="form-group text-right mt-2">
+                <button
+                  class="btn btn-primary"
+                  type="submit"
+                  title="Start Meeting"
+                >
+                  Start Meeting
+                </button>
               </div>
             </div>
             <div v-else class="card-body card-outline-danger text-center">

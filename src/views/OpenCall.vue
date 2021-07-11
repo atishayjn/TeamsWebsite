@@ -19,7 +19,7 @@
 import { JitsiMeet } from "@mycure/vue-jitsi-meet";
 
 export default {
-  name: "InstantChat",
+  name: "OpenCall",
   components: {
     VueJitsiMeet: JitsiMeet,
   },

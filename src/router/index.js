@@ -6,8 +6,8 @@ import Register from "../views/AppRegister.vue";
 import TeamsList from "../views/TeamsList.vue";
 import TeamsCheckIn from "../views/TeamsCheckIn.vue";
 import TeamsCall from "../views/TeamsCall.vue";
-import InstantCheckIn from "../views/InstantCheckIn.vue";
-import InstantChat from "../views/InstantChat.vue";
+import OpenCheckIn from "../views/OpenCheckIn.vue";
+import OpenCall from "../views/OpenCall.vue";
 
 Vue.use(VueRouter);
 
@@ -44,14 +44,14 @@ const routes = [
   },
   {
     path: "/meet",
-    name: "InstantCheckIn",
-    component: InstantCheckIn,
+    name: "OpenCheckIn",
+    component: OpenCheckIn,
   },
   {
     // Pass host ID here and use it as room name for jitsi.
     path: "/meet/:meetName/:hostID",
-    name: "InstantChat",
-    component: InstantChat,
+    name: "OpenCall",
+    component: OpenCall,
   },
   {
     // default path
