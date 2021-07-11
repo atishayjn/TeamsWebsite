@@ -1,7 +1,7 @@
 <template>
   <form class="mt-3" @submit.prevent="handleCheckIn">
     <div class="container">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center mb-5">
         <div class="col-lg-6">
           <div class="card bg-light">
             <div v-if="user" class="card-body">
@@ -10,9 +10,9 @@
                 To: <span class="text-primary">{{ roomName }}</span>
               </p>
               <section class="form-group">
-                <label class="form-control-label sr-only" for="displayName"
-                  >Name</label
-                >
+                <label class="form-control-label sr-only" for="displayName">
+                  Name
+                </label>
                 <input
                   v-model="displayName"
                   required
@@ -22,10 +22,6 @@
               </section>
               <div class="form-group text-right mb-0">
                 <button class="btn btn-primary" type="submit">Check in</button>
-              </div>
-              <div>
-                Invite Link:
-                <a target="_blank" :href="invite">invite</a>
               </div>
             </div>
             <div v-else class="card-body card-outline-danger text-center">
@@ -41,6 +37,9 @@
           </div>
         </div>
       </div>
+      <div v-if="user" class="row justify-content-center pb-5">
+        <div class="col-md-4"><Invite /></div>
+      </div>
     </div>
   </form>
 </template>
@@ -48,8 +47,12 @@
 <script>
 import Firebase from "firebase";
 import db from "../db.js";
+import Invite from "@/components/InviteLinkBox";
 
 export default {
+  components: {
+    Invite,
+  },
   props: {
     user: {
       type: Object,

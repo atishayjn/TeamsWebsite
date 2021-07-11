@@ -3,7 +3,7 @@
     <div class="mb-3">
       <span class="mb-0 h2 text-primary">{{ meetName }}</span>
     </div>
-    <div>
+    <div class="row mb-5">
       <div class="col-md-8">
         <vue-jitsi-meet
           ref="jitsiRef"
@@ -11,17 +11,20 @@
           :options="jitsiOptions"
         ></vue-jitsi-meet>
       </div>
+      <div class="col-md-4"><Invite /></div>
     </div>
   </div>
 </template>
 
 <script>
 import { JitsiMeet } from "@mycure/vue-jitsi-meet";
+import Invite from "@/components/InviteLinkBox";
 
 export default {
   name: "OpenCall",
   components: {
     VueJitsiMeet: JitsiMeet,
+    Invite,
   },
   data: function () {
     return {

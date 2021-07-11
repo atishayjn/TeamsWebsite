@@ -91,7 +91,7 @@
         </div>
         <div class="col-md-4"></div>
       </div>
-      <div class="row pb-5 ps-1">
+      <div class="row pb-4 ps-1">
         <div v-if="attendeeJoined" class="col-md-8">
           <vue-jitsi-meet
             ref="jitsiRef"
@@ -104,6 +104,9 @@
           <!-- eslint-disable-next-line -->
           <Chatbox :user="user" :hostID="hostID" :roomID="roomID" />
         </div>
+      </div>
+      <div class="row justify-content-center pb-5">
+        <div class="col-md-4"><Invite /></div>
       </div>
     </div>
     <div v-else>
@@ -124,6 +127,7 @@ import db from "../db.js";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { JitsiMeet } from "@mycure/vue-jitsi-meet";
 import Chatbox from "@/components/Chatbox";
+import Invite from "@/components/InviteLinkBox";
 
 export default {
   name: "TeamsCall",
@@ -131,6 +135,7 @@ export default {
     FontAwesomeIcon,
     VueJitsiMeet: JitsiMeet,
     Chatbox,
+    Invite,
   },
   props: {
     user: {

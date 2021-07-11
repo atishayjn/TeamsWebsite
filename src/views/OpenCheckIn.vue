@@ -6,7 +6,6 @@
           <div class="card bg-light">
             <div v-if="user" class="card-body">
               <h3 class="font-weight-light mb-0">Enter Meeting Name</h3>
-              <p class="font-weight-bold"></p>
               <section class="form-group">
                 <input
                   v-model="meetName"
