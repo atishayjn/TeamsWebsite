@@ -11,18 +11,18 @@
         <div class="col-md">
           <button
             v-if="!attendeeJoined && attendeeApproved"
-            class="btn btn-primary mr-1"
+            class="btn btn-primary me-1"
             @click="doJoin"
           >
             Join Call
           </button>
           <button
-            v-if="attendeeJoined && attendeeApproved"
+            v-if="attendeeApproved"
             type="button"
             class="btn btn-danger mr-1"
-            @click="doLeave"
+            @click="doLeaveRoom"
           >
-            Leave
+            Exit Room
           </button>
         </div>
         <div class="col-md">
@@ -302,10 +302,10 @@ export default {
       // this.$refs.webrtc.join()
       this.attendeeJoined = true;
     },
-    doLeave() {
+    doLeaveRoom() {
       // Remove user from the Room.
       // this.$refs.webrtc.leave()
-      this.attendeeJoined = false;
+      this.$router.push("/rooms");
     },
     // doAttendeeJoined(joinID) {
     //   // Update WebRTCID.
