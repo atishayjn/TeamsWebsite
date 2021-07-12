@@ -2,25 +2,38 @@
   <div>
     <nav class="navbar navbar-expand bg-primary navbar-dark">
       <div class="container-fluid">
-        <router-link class="navbar-brand" to="/"
-          ><span class="h2 pr-1">Teams</span>
-          <span v-if="user" class="navbar-text small">
-            : Hi
+        <!-- Brand Name -->
+        <router-link class="navbar-brand me-2" to="/"
+          ><span class="h2">Teams</span>
+          <span v-if="user" class="h2 navbar-text"> | </span>
+        </router-link>
+        <!-- Navigations Items -->
+        <div
+          v-if="user"
+          id="navbarNavAltMarkup"
+          class="collapse navbar-collapse"
+        >
+          <div class="navbar-nav">
+            <router-link class="nav-link nav-item" to="/">Home</router-link>
+            <router-link class="nav-link nav-item" to="/rooms">
+              Your Teams
+            </router-link>
+          </div>
+        </div>
+        <!-- Login Options -->
+        <div class="navbar-nav ml-auto">
+          <router-link v-if="!user" class="nav-item nav-link" to="/login"
+            >Log in
+          </router-link>
+          <router-link v-if="!user" class="nav-item nav-link" to="/register"
+            >Register
+          </router-link>
+          <router-link v-if="user" class="nav-item nav-link" to="/">
+            Hi
             <span class="font-weight-bold text-white">
               {{ user.displayName }}
             </span>
-          </span>
-        </router-link>
-        <div class="navbar-nav ml-auto">
-          <router-link v-if="!user" class="nav-item nav-link" to="/login"
-            >Log in</router-link
-          >
-          <router-link v-if="!user" class="nav-item nav-link" to="/register"
-            >Register</router-link
-          >
-          <router-link v-if="user" class="nav-item nav-link" to="/rooms"
-            >Your Teams</router-link
-          >
+          </router-link>
           <button
             v-if="user"
             class="nav-item nav-link btn btn-link"
