@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <!-- Brand Name -->
         <router-link class="navbar-brand me-2" to="/"
-          ><span class="h2">Teams</span>
+          ><span class="h2">vTeams</span>
           <span v-if="user" class="h2 navbar-text"> | </span>
         </router-link>
         <!-- Navigations Items -->

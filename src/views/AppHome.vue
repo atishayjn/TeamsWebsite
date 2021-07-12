@@ -9,9 +9,7 @@
     <div class="container text-center">
       <div class="row justify-content-center">
         <div class="col-10 col-md-10 col-lg-8 col-xl-7">
-          <h4 class="display-4 text-primary mb-2">
-            Welcome to Microsoft Teams
-          </h4>
+          <h4 class="display-4 text-primary mb-2">Welcome to vTeams</h4>
           <p class="lead">
             Meet, chat, call, and collaborate in just one place.
           </p>
@@ -27,12 +25,34 @@
             to="/register"
             >Register</router-link
           >
-          <router-link v-if="user" class="btn btn-primary mx-1" to="/meet"
+          <router-link
+            v-if="user"
+            class="btn btn-primary mx-1"
+            title="Open Meetings can be joined even without logging-in"
+            to="/meet"
             >Start Open Meeting</router-link
           >
           <router-link v-if="user" class="btn btn-primary mx-1" to="/rooms"
             >Your Teams</router-link
           >
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5 ms-5 me-2 pt-5">
+        <div class="col-lg-6 border border-2 text-start lead">
+          <small>
+            Instructions:
+            <ol>
+              <li>
+                Select <strong>Start Open Meeting</strong> to instantly start a
+                new meeting which can be joined even without logging-in.
+              </li>
+              <li>
+                Select <strong>Your Teams</strong> to see and create new Teams.
+                Within Teams you can save chats and have host controlled
+                meetings.
+              </li>
+            </ol>
+          </small>
         </div>
       </div>
     </div>
