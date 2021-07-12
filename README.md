@@ -117,18 +117,13 @@ If a backlog was not cleared in a sprint, it was rolled over to the subsequent s
   <figcaption style="text-align: center">Project Timeline</figcaption>
 </figure>
 
-After every sprint, the app was given to friends, colleagues and, family members for testing and feedback was taken. This is a standard design thinking practice. After receiving the feedbacks, the work was reviewed and the tasks for the next sprint were decided. One common observation from this activity is that majority of the people wanted the app to be **simpler** and **more intuitive**.
+After every sprint, the app was given to friends, colleagues and, family members for testing and feedback was taken. This practice of building prototypes very fast and getting user feedback is a standard design thinking practice. After receiving the feedbacks, the work was reviewed and the tasks for the next sprint were decided. One common observation from this activity is that majority of the people wanted the app to be **simpler** and **more intuitive**.
 
 <!-- GETTING STARTED -->
 
 ## Getting Started
 
-<!-- This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps. -->
-
 ### Prerequisites
-
-<!-- This is an example of how to list things you need to use the software and how to install them. -->
 
 - Node.js and npm
 

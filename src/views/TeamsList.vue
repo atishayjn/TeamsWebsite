@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-9 col-lg-7">
         <h1 class="font-weight-light text-center">Add a Team</h1>
-        <!-- Add New Team/Room box -->
+        <!-- Add New Team Room-->
         <div class="card bg-light">
           <div class="card-body text-center">
             <form class="formgroup">
@@ -42,7 +42,7 @@
             <h4 class="card-title m-0 text-center">Your Teams</h4>
           </div>
           <div class="list-group list-group-flush">
-            <!-- Team/Room List Item-->
+            <!-- Team Room List Item-->
             <div
               v-for="item in rooms"
               :key="item.id"
@@ -53,7 +53,7 @@
                 role="group"
                 aria-label="Room Options"
               >
-                <!-- Delete Team/Room -->
+                <!-- Delete Team Room -->
                 <button
                   class="btn btn-sm btn-outline-secondary"
                   title="Delete Team"
@@ -61,8 +61,7 @@
                 >
                   <font-awesome-icon icon="trash"></font-awesome-icon>
                 </button>
-                <!-- CheckIn to Team/Room  -->
-                <!-- CHECK HERE -->
+                <!-- CheckIn to Team Room  -->
                 <router-link
                   class="btn btn-sm btn-outline-secondary"
                   title="Check In"
@@ -71,7 +70,6 @@
                   <font-awesome-icon icon="user"></font-awesome-icon>
                 </router-link>
                 <!-- Start/Join Call -->
-                <!-- CHECK HERE -->
                 <router-link
                   class="btn btn-sm btn-outline-secondary"
                   title="Join Call"
@@ -81,7 +79,7 @@
                 </router-link>
               </section>
 
-              <!-- Team/Roome Name -->
+              <!-- Team Roome Name -->
               <section class="pl-3 text-left align-self-center mx-2">
                 <router-link
                   class="text-decoration-none"
@@ -120,7 +118,7 @@ export default {
   },
   data: function () {
     return {
-      roomName: null,
+      roomName: null, // Stores new team/room name from input box.
     };
   },
   methods: {
@@ -130,6 +128,9 @@ export default {
         this.$emit("addRoom", this.roomName);
         this.roomName = null;
         this.$refs.roomName.focus();
+      } else {
+        // Show pop-up if room name is not entered.
+        window.alert("Please Enter Team name.");
       }
     },
   },

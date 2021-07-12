@@ -18,6 +18,7 @@ Vue.use(WebRTC);
 library.add(faTrash, faVideo, faUser, faPodcast);
 window.io = io;
 
+// Mount App
 new Vue({
   router,
   render: (h) => h(App),
