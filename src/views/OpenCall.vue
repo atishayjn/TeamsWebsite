@@ -4,7 +4,7 @@
       <span class="mb-0 h2 text-primary">{{ meetName }}</span>
     </div>
     <div class="row mb-5">
-      <div class="col-md-8">
+      <div class="col-md-8 vh-100 pb-5">
         <vue-jitsi-meet
           ref="jitsiRef"
           domain="meet.jit.si"
@@ -38,8 +38,6 @@ export default {
       return {
         // Use host id for room name.
         roomName: this.hostID,
-        width: 1000,
-        height: 700,
         noSSL: false,
         // id: this.user.uid,
         // role: "none",

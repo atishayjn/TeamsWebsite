@@ -88,15 +88,18 @@
         <div class="col-md-4"></div>
       </div>
       <div class="row pb-4 ps-1">
-        <div v-if="attendeeJoined && attendeeApproved" class="col-md-8">
+        <div
+          v-if="attendeeJoined && attendeeApproved"
+          class="col-md-8 vh-100 pb-5"
+        >
           <vue-jitsi-meet
             ref="jitsiRef"
             domain="meet.jit.si"
             :options="jitsiOptions"
           ></vue-jitsi-meet>
         </div>
-        <div v-else class="border border-2 col-md-8"></div>
-        <div v-if="user" class="col-md-4">
+        <div v-else class="border border-2 col-md-8 vh-100"></div>
+        <div v-if="user" class="col-md-4 vh-100">
           <!-- eslint-disable-next-line -->
           <Chatbox :user="user" :hostID="hostID" :roomID="roomID" />
         </div>
@@ -158,8 +161,6 @@ export default {
     jitsiOptions() {
       return {
         roomName: this.roomID,
-        width: 1000,
-        height: 700,
         noSSL: false,
         id: this.user.uid,
         role: "none",
