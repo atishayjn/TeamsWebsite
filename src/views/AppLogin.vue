@@ -18,7 +18,7 @@
                     id="email"
                     v-model="email"
                     required
-                    class="form-control"
+                    class="form-control mb-1"
                     type="email"
                     placeholder="Email"
                   />
@@ -27,7 +27,7 @@
                   <input
                     v-model="password"
                     required
-                    class="form-control"
+                    class="form-control mb-1"
                     type="password"
                     placeholder="Password"
                   />

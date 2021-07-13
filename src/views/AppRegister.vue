@@ -18,7 +18,7 @@
                     <input
                       id="displayName"
                       v-model="displayName"
-                      class="form-control"
+                      class="form-control mb-1"
                       type="text"
                       placeholder="Display Name"
                       name="displayName"
@@ -33,7 +33,7 @@
                   <input
                     id="email"
                     v-model="email"
-                    class="form-control"
+                    class="form-control mb-2"
                     type="email"
                     placeholder="Email Address"
                     required
@@ -44,7 +44,7 @@
                   <section class="col-sm-6 form-group">
                     <input
                       v-model="passOne"
-                      class="form-control"
+                      class="form-control mb-1"
                       type="password"
                       placeholder="Password"
                     />
@@ -52,7 +52,7 @@
                   <section class="col-sm-6 form-group">
                     <input
                       v-model="passTwo"
-                      class="form-control"
+                      class="form-control mb-1"
                       type="password"
                       required
                       placeholder="Repeat Password"

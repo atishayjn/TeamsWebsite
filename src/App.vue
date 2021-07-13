@@ -118,6 +118,7 @@ export default {
             .doc(this.user.uid)
             .set({
               displayName: payload.displayName,
+              approved: this.user.uid == payload.hostID, // Approve Host on CheckIn
               createdAt: Firebase.firestore.FieldValue.serverTimestamp(),
             })
             .then(() =>

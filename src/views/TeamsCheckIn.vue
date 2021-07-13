@@ -9,6 +9,10 @@
               <p v-if="roomName" class="font-weight-bold">
                 To: <span class="text-primary">{{ roomName }}</span>
               </p>
+              <div class="mb-2">
+                If you are entering the Team for the first time, please register
+                yourself by checking in.
+              </div>
               <section class="form-group">
                 <label class="form-control-label sr-only" for="displayName">
                   Name

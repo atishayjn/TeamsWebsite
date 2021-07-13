@@ -2,7 +2,7 @@
   <div class="container-fluid mt-4">
     <div class="mb-3">
       <span class="mb-0 h2 text-primary">{{ roomName }}</span>
-      <span v-if="user && user.uid != hostID" class="ml-1">
+      <span v-if="user" class="ml-1">
         Hosted by: <strong class="text-danger">{{ hostDisplayName }} </strong>
       </span>
     </div>
