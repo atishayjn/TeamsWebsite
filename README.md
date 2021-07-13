@@ -11,7 +11,7 @@
   <p align="center">
     A Microsoft Teams Clone with group video call and team channels!
     <br />
-    <a href="">View Demo</a>
+    <a href="https://youtu.be/IzrUCnqShL4">Video Demo</a>
     ·
     <a href="https://teams-meet.netlify.app/">Live Site</a>
   </p>
@@ -28,6 +28,7 @@
         <li><a href="#features">Features</a></li>
         <li><a href="#frameworks-and-services">Frameworks and Services</a></li>
         <li><a href="#work-methodology">Work Methodology</a></li>
+        <li><a href="#coding-practices">Coding Practices</a></li>
       </ul>
     </li>
     <li>
@@ -118,6 +119,16 @@ If a backlog was not cleared in a sprint, it was rolled over to the subsequent s
 </figure>
 
 After every sprint, the app was given to friends, colleagues and, family members for testing and feedback was taken. This practice of building prototypes very fast and getting user feedback is a standard design thinking practice. After receiving the feedbacks, the work was reviewed and the tasks for the next sprint were decided. One common observation from this activity is that majority of the people wanted the app to be **simpler** and **more intuitive**.
+
+### Coding Practices
+
+This project uses all the three priority rules recommended by Vue.js community in its official [Style Guide](https://vuejs.org/v2/style-guide/)
+
+1. Essential Rules (for Error Prevention)
+2. Strongly Recommended Rules (for better Readability)
+3. Recommended Rules (for minimizing Cognitive Overhead)
+
+Further, it is attempted to maintain consistency in block spacing and identation.
 
 <!-- GETTING STARTED -->
 
@@ -223,6 +234,26 @@ messages: {
 
 ## Screenshots
 
+#### Home Page
+
+<img src="images/Home-2.png" alt="Home Page-2" height="240" >
+
+#### Open Meeting
+
+<img src="images/Open-Meeting.png" alt="Open Meeting" height="240" >
+
+#### Your Teams Page
+
+<img src="images/Your-teams.png" alt="Your Teams Page" height="240" >
+
+#### Team CheckIn
+
+<img src="images/CheckIn.png" alt="CheckIn Page" height="240" >
+
+#### Team Room
+
+<img src="images/Team-Room.png" alt="Team Room" height="240" >
+
 ## Tips for Developers
 
 To understand the code, especially if you plan to build this app from scratch.
@@ -233,15 +264,24 @@ To understand the code, especially if you plan to build this app from scratch.
 
    (i) To understand the minimum functional code (easy), check vue files with name starting with **Open\***.
 
-   (ii) To explore and understand the main features of the app, check vue files with name starting with **Teams\***.
+   (ii) To explore and understand the main feature (i.e., Team Rooms) of the app, check vue files with name starting with **Teams\***.
 
-I highly recommended going through [Vue Style Guide]() to follow good coding practices.
+I highly recommended going through [Vue Style Guide](https://vuejs.org/v2/style-guide/) to follow good coding practices.
 
 <!-- KNOWN ISSUE AND LIMITATIONS -->
 
 ## Known issues and limitations
 
-<!-- To do at the end -->
+- Jitsi Meetings give Host Control to everyone in the meeting, giving privileges like kicking out others.
+
+  - From Jitsi user forum, it was found that they are working on giving an option to pass user "role" as an attribute in the API.
+  - This limitation can be overcome by writing opposing commands in listener functions for host control features.
+
+- Google Chrome sometimes give "display-capture" error while loading the meeting.
+
+  - In such a case, clear browsing data and try again.
+
+- Teams deleted by host still appears in other attendees' team list.
 
 <!-- CONTACT -->
 
@@ -261,5 +301,3 @@ Atishay Jain
 
 Special thanks to [Ishant Gupta](https://in.linkedin.com/in/ishantgupta777), [Ritik Taneja](https://in.linkedin.com/in/ritiktaneja) and [Avi Wadhwa](https://in.linkedin.com/in/avi-wadhwa-268756167) to recommend me the right resources and frameworks to get started with Web Development and help me in fixing bugs.
 They have been as important to this project as [Stack Overflow](https://stackoverflow.com/).
-
-[product-screenshot]: images/Home-page.png
