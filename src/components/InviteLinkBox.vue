@@ -47,8 +47,12 @@ export default {
       isCopy: false,
     };
   },
+
   methods: {
     copyURL() {
+      /**
+       * This function copies the invite link to clipboard.
+       */
       let Url = this.$refs.mylink;
       Url.innerHTML = window.location.href;
 
@@ -60,6 +64,7 @@ export default {
 
       clipboardData.writeText(Url.innerHTML);
 
+      // Toggle isCopy status (to toggle button)
       if (!this.isCopy) {
         this.isCopy = true;
       }

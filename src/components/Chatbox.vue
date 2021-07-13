@@ -43,6 +43,7 @@ import db from "@/db.js";
 
 export default {
   name: "Chatbox",
+
   props: {
     user: {
       type: Object,
@@ -57,15 +58,18 @@ export default {
       default: null,
     },
   },
+
   data() {
     return {
       message: null,
       messages: [],
     };
   },
+
   created() {
     this.fetchMessages();
   },
+
   methods: {
     fetchMessages() {
       // Fetch from firebase and feed to messages.
@@ -88,7 +92,6 @@ export default {
         this.scrollToBottom();
       }, 500);
     },
-
     saveMessage() {
       // Save to firestore.
       db.collection("users")
@@ -105,12 +108,9 @@ export default {
         .then(() => {
           this.scrollToBottom();
         });
-
       // Clear Typed Message.
       this.message = null;
     },
-
-    // To scroll to the bottom of chat window.
     scrollToBottom() {
       let box = document.querySelector(".msg_history");
       box.scrollTop = box.scrollHeight;

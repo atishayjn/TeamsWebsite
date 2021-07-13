@@ -50,6 +50,7 @@
 <script>
 export default {
   name: "AppNavigation",
+
   props: {
     user: {
       type: Object,

@@ -98,14 +98,15 @@
 </template>
 
 <script>
-// Importing fontawesome components.
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 export default {
   name: "TeamsList",
+
   components: {
     FontAwesomeIcon,
   },
+
   props: {
     user: {
       type: Object,
@@ -116,11 +117,13 @@ export default {
       default: null,
     },
   },
+
   data: function () {
     return {
-      roomName: null, // Stores new team/room name from input box.
+      roomName: null, // Stores new team room name from input box.
     };
   },
+
   methods: {
     handleAdd: function () {
       // Check if input field (roomName) is empty.

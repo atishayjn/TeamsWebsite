@@ -50,15 +50,15 @@ export default {
       default: null,
     },
   },
+
   data: function () {
     return {
-      // Find a way to pass meet name to InstantChat (Can pass in URL).
       meetName: null,
     };
   },
+
   methods: {
     handleCheckIn: function () {
-      // Multiword meet names look weird on URL find another way.
       this.$router.push(`/meet/${this.meetName}/${this.user.uid}`);
     },
   },

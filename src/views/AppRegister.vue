@@ -90,8 +90,13 @@ export default {
       error: null,
     };
   },
+
   watch: {
     passTwo: function () {
+      /**
+       * This function checks if the repeated password matches
+       * with the original password.
+       */
       if (
         this.passOne !== "" &&
         this.passTwo !== "" &&
@@ -103,6 +108,7 @@ export default {
       }
     },
   },
+
   methods: {
     register: function () {
       const info = {

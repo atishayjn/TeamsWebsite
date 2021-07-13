@@ -21,17 +21,21 @@ import AppFooter from "@/components/AppFooter";
 
 export default {
   name: "App",
+
   components: {
     AppNavigation,
     AppFooter,
   },
+
   data: function () {
     return {
       user: null,
       rooms: [],
     };
   },
+
   mounted() {
+    // Get User Authentication information and Rooms List.
     Firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // Change Current User.
@@ -44,9 +48,6 @@ export default {
             const snapData = [];
             snapshot.forEach((doc) => {
               /**
-               * ---------CHECK HERE------
-               * Code seems fine, issues with database (Same document id in diff collections)
-               *
                * Check if hostID exists for that particular room (new/old database issue)
                * If hostID doesn't exist, the only reason could be this room was hosted by
                * the current user earlier.
@@ -77,6 +78,7 @@ export default {
       }
     });
   },
+
   methods: {
     logout: function () {
       Firebase.auth()

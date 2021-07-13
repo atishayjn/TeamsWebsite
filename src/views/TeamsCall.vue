@@ -105,7 +105,7 @@
         </div>
       </div>
       <div class="row justify-content-center pb-5">
-        <div class="col-md-4"><Invite /></div>
+        <div class="col-md-4"><InviteBox /></div>
       </div>
     </div>
     <div v-else>
@@ -126,39 +126,43 @@ import db from "../db.js";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { JitsiMeet } from "@mycure/vue-jitsi-meet";
 import Chatbox from "@/components/Chatbox";
-import Invite from "@/components/InviteLinkBox";
+import InviteBox from "@/components/InviteLinkBox";
 
 export default {
   name: "TeamsCall",
+
   components: {
     FontAwesomeIcon,
     VueJitsiMeet: JitsiMeet,
     Chatbox,
-    Invite,
+    InviteBox,
   },
+
   props: {
     user: {
       type: Object,
       default: null,
     },
   },
+
   data: function () {
     return {
       hostID: this.$route.params.hostID,
       roomID: this.$route.params.roomID,
-      // hostID: null,
       roomName: null,
       hostDisplayName: null,
       attendeesPending: [],
       attendeesApproved: [],
       attendeeApproved: false,
       attendeeJoined: true,
-
-      //Data for jisi.
     };
   },
+
   computed: {
     jitsiOptions() {
+      /**
+       * This computed property computes the props to be passed to JitsiMeet.
+       */
       return {
         roomName: this.roomID,
         noSSL: false,
@@ -180,26 +184,8 @@ export default {
       };
     },
   },
-  mounted() {
-    // // Get the host ID.
-    // db.collection("users")
-    //   .doc(this.user.uid)
-    //   .collection("rooms")
-    //   .doc(this.roomID)
-    //   .get()
-    //   .then((roomDocument) => {
-    //     if (roomDocument.exists) {
-    //       console.log("Room Exists");
-    //       this.hostID = roomDocument.data().hostID;
-    //       console.log(this.hostID);
-    //     } else {
-    //       console.log("Room doesn't Exist");
-    //       this.$router.replace("/");
-    //     }
-    //   });
-    // console.log("Reached here"); // This is executed before the above function.
-    // console.log(this.hostID);
 
+  mounted() {
     const roomRef = db
       .collection("users")
       .doc(this.hostID)
@@ -233,7 +219,6 @@ export default {
         }
         // Check Approved Attendees.
         if (attendeeDoc.data().approved) {
-          // Add it to tempApproved Array.
           tempApproved.push({
             id: attendeeDoc.id,
             displayName: attendeeDoc.data().displayName,
@@ -262,12 +247,13 @@ export default {
       this.attendeesPending = tempPending;
       this.attendeesApproved = tempApproved;
 
-      // CheckIn user if not already checkedin.
+      // Redirect to Team CheckIn if user not checked-in already.
       if (!userCheckedIn) {
         this.$router.push(`/checkin/${this.hostID}/${this.roomID}`);
       }
     });
   },
+
   methods: {
     deleteAttendee: function (attendeeID) {
       if (this.user && this.user.uid == this.hostID) {
@@ -299,58 +285,23 @@ export default {
       }
     },
     doJoin() {
-      // Join user to the Room.
-      // this.$refs.webrtc.join()
       this.attendeeJoined = true;
     },
     doLeaveRoom() {
-      // Remove user from the Room.
-      // this.$refs.webrtc.leave()
       this.$router.push("/rooms");
     },
-    // doAttendeeJoined(joinID) {
-    //   // Update WebRTCID.
-    //   const ref = db
-    //               .collection('users')
-    //               .doc(this.hostID)
-    //               .collection('rooms')
-    //               .doc(this.roomID)
-    //               .collection('attendees')
-    //               .doc(this.user.uid)
-    //   ref.update({
-    //     webRTCID: joinID
-    //   })
-    // },
-    // doAttendeeLeft(leaveID) {
-    //   // Update WebRTCID.
-    //   const ref = db
-    //               .collection('users')
-    //               .doc(this.hostID)
-    //               .collection('rooms')
-    //               .doc(this.roomID)
-    //               .collection('attendees')
-    //               .doc(this.user.uid)
-    //   ref.update({
-    //     webRTCID: null
-    //   })
-    // },
     onIFrameLoad() {
+      /**
+       * This function is called on Jitsi load.
+       */
+      // Give Meeting Name as Subject.
       this.$refs.jitsiRef.addEventListener(
         "participantRoleChanged",
         (event) => {
-          this.$refs.jitsiRef.executeCommand(
-            "subject",
-            "New Conference Subject"
-          );
-          // event.id = this.user.uid;
-          // event.role = "participant";
+          this.$refs.jitsiRef.executeCommand("subject", this.roomName);
         }
       );
-
-      /**
-       * Toggle attendeeJoined as user leave the meet.
-       * This will remove the jitsi frame from the page.
-       */
+      // Toggle attendeeJoined on leave call (removes jitsi frame from the page).
       this.$refs.jitsiRef.addEventListener("videoConferenceLeft", (event) => {
         this.attendeeJoined = false;
       });

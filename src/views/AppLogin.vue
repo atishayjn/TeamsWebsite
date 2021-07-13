@@ -50,6 +50,10 @@
 <script>
 import Firebase from "firebase";
 
+/**
+ * This is the Login Page Component.
+ */
+
 export default {
   data: function () {
     return {
@@ -58,14 +62,13 @@ export default {
       error: null,
     };
   },
+
   methods: {
-    // User Authentication Function
     login: function () {
       const info = {
         email: this.email,
         password: this.password,
       };
-      console.log("Firebase Auth start!");
       Firebase.auth()
         .signInWithEmailAndPassword(info.email, info.password)
         .then(

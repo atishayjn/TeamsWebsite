@@ -11,36 +11,38 @@
           :options="jitsiOptions"
         ></vue-jitsi-meet>
       </div>
-      <div class="col-md-4"><Invite /></div>
+      <div class="col-md-4"><InviteBox /></div>
     </div>
   </div>
 </template>
 
 <script>
 import { JitsiMeet } from "@mycure/vue-jitsi-meet";
-import Invite from "@/components/InviteLinkBox";
+import InviteBox from "@/components/InviteLinkBox";
 
 export default {
   name: "OpenCall",
+
   components: {
     VueJitsiMeet: JitsiMeet,
-    Invite,
+    InviteBox,
   },
+
   data: function () {
     return {
       meetName: this.$route.params.meetName,
       hostID: this.$route.params.hostID,
-      // attendeeJoined: true,
     };
   },
+
   computed: {
     jitsiOptions() {
+      /**
+       * This computed property computes the props to be passed to JitsiMeet.
+       */
       return {
-        // Use host id for room name.
         roomName: this.hostID,
         noSSL: false,
-        // id: this.user.uid,
-        // role: "none",
         userInfo: {
           email: "",
           displayName: "",
@@ -57,21 +59,22 @@ export default {
       };
     },
   },
+
   methods: {
     onIFrameLoad() {
+      /**
+       * This function is called when Jitsi loads.
+       */
+      // Give Meeting Name as Subject.
       this.$refs.jitsiRef.addEventListener(
         "participantRoleChanged",
         (event) => {
           this.$refs.jitsiRef.executeCommand("subject", this.meetName);
-          // event.id = this.user.uid;
-          // event.role = "participant";
         }
       );
-      // Give an option to join again after leaving the meeting.
+      // Go to Home page on call leave.
       this.$refs.jitsiRef.addEventListener("videoConferenceLeft", (event) => {
-        // this.attendeeJoined = false;
         this.$router.push("/");
-        // window.location.reload();
       });
     },
   },

@@ -39,7 +39,7 @@
         </div>
       </div>
       <div v-if="user" class="row justify-content-center pb-5">
-        <div class="col-md-4"><Invite /></div>
+        <div class="col-md-4"><InviteBox /></div>
       </div>
     </div>
   </form>
@@ -48,32 +48,31 @@
 <script>
 import Firebase from "firebase";
 import db from "../db.js";
-import Invite from "@/components/InviteLinkBox";
+import InviteBox from "@/components/InviteLinkBox";
 
 export default {
   components: {
-    Invite,
+    InviteBox,
   },
+
   props: {
     user: {
       type: Object,
       default: null,
     },
   },
+
   data: function () {
     return {
       hostID: this.$route.params.hostID,
       roomID: this.$route.params.roomID,
       displayName: null,
       roomName: null,
-      invite: null,
     };
   },
-  mounted() {
-    // Invite Link.
-    this.invite = this.$router.currentRoute.path;
 
-    // Get the User's displayName.
+  mounted() {
+    // Get the User displayName.
     Firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.displayName = user.displayName;
@@ -95,6 +94,7 @@ export default {
         }
       });
   },
+
   methods: {
     handleCheckIn: function () {
       // Add the newly checked-in room to the list of rooms of the current user.

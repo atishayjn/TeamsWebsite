@@ -60,6 +60,10 @@
 </template>
 
 <script>
+/**
+ * This is the Home Page Component.
+ */
+
 export default {
   name: "AppHome",
   props: {
