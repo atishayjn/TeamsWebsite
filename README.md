@@ -244,7 +244,7 @@ messages: {
 
 #### Your Teams Page
 
-<img src="images/Your-teams.png" alt="Your Teams Page" height="240" >
+<img src="images/Your-Teams.png" alt="Your Teams Page" height="240" >
 
 #### Team CheckIn
 
