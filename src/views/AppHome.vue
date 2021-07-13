@@ -37,7 +37,7 @@
           >
         </div>
       </div>
-      <div class="row justify-content-center mt-5 ms-5 me-2 pt-5">
+      <div v-if="user" class="row justify-content-center mt-5 ms-5 me-2 pt-5">
         <div class="col-lg-6 border border-2 text-start lead">
           <small>
             Instructions:
